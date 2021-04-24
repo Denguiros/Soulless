@@ -50,12 +50,12 @@ namespace Control
             myTransform = transform;
             animatorHandler.Initialize();
             playerManager = GetComponent<PlayerManager>();
+            playerManager.isGrounded = true;
+            //Ignore these layers for ground check
+            ignoreForGroundCheck = ~(1 << 8 | 1 << 11);
         }
 
         #region Movement Calculations
-        Vector3 targetPosition;
-
-
 
         private void HandleRotation(float delta)
         {
@@ -110,6 +110,23 @@ namespace Control
                 {
                     animatorHandler.PlayTargetAnimation(PlayerAnimations.UnarmedRollBackward.ToString(), true);
                 }
+            }
+        }
+        public void HandleFalling(float delta,Vector3 moveDirection)
+        {
+            playerManager.isGrounded = false;
+            RaycastHit hit;
+            Vector3 origin = myTransform.position;
+            origin.y += groundDetectionRayStartPoint;
+            if(Physics.Raycast(origin,myTransform.forward,out hit,0.4f))
+            {
+                moveDirection = Vector3.zero;
+            }
+            if(playerManager.isInAir)
+            {
+                rigidBody.AddForce(-Vector3.up * fallingSpeed);
+                rigidBody.AddForce(moveDirection * fallingSpeed / 5f);
+
             }
         }
 

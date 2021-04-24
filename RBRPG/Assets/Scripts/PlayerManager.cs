@@ -41,7 +41,7 @@ namespace Control
             IsSprinting = inputHandler.SprintAndRollButtonInput;
             if(isInAir)
             {
-                playerLocomotion.InAirTimer = playerLocomotion.InAirTimer + Time.deltaTime;
+                playerLocomotion.InAirTimer += Time.deltaTime;
             }
         }
     }
