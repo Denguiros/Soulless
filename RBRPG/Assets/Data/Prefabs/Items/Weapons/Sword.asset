@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
-  itemName: Sword
-  modelPrefab: {fileID: 1631607032641582, guid: 0c14f3ea30af4174ba288b3c2042f665, type: 3}
+  itemName: Sword of Oblivion
+  <modelPrefab>k__BackingField: {fileID: 1631607032641582, guid: 0c14f3ea30af4174ba288b3c2042f665, type: 3}
   isUnarmed: 0
-  lightAttack1: 0
-  heavyAttack1: 1
+  <lightAttack1>k__BackingField: 0
+  <lightAttack2>k__BackingField: 1
+  <lightAttack3>k__BackingField: 2
+  <lightAttack4>k__BackingField: 3
+  <lightAttack5>k__BackingField: 4
+  <heavyAttack1>k__BackingField: 0
+  <heavyAttack2>k__BackingField: 1
+  <heavyAttack3>k__BackingField: 2

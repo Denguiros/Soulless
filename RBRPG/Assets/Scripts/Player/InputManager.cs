@@ -38,6 +38,8 @@ namespace PlayerControl
         public bool rollFlag { get; set; }
         [field: SerializeField]
         public bool jumpInput { get; set; }
+        [field: SerializeField]
+        public bool comboFlag { get; set; }
 
         private void Awake()
         {
@@ -54,6 +56,14 @@ namespace PlayerControl
                 inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
                 inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
                 inputActions.PlayerMovement.CameraZoom.performed += i => cameraZoomInput = i.ReadValue<Vector2>();
+                inputActions.PlayerActions.LightAttack.performed += _ => lightAttackInput = true;
+                inputActions.PlayerActions.LightAttack.canceled += _ => lightAttackInput = false;
+                inputActions.PlayerActions.HeavyAttack.performed += _ => heavyAttackInput = true;
+                inputActions.PlayerActions.HeavyAttack.canceled += _ => heavyAttackInput = false;
+                inputActions.PlayerActions.SprintAndRoll.performed += i => sprintAndRollInput = true;
+                inputActions.PlayerActions.SprintAndRoll.canceled += i => sprintAndRollInput = false;
+                inputActions.PlayerActions.Jump.performed += _ => jumpInput = true;
+                inputActions.PlayerActions.Jump.canceled += _ => jumpInput = false;
             }
             inputActions.Enable();
         }
@@ -65,7 +75,6 @@ namespace PlayerControl
         {
             MoveInput();
             HandleSprintAndRollInput();
-            HandleJumpingInput();
             HandleAttackInput();
         }
         private void MoveInput()
@@ -81,12 +90,10 @@ namespace PlayerControl
         }
         private void HandleSprintAndRollInput()
         {
-            inputActions.PlayerActions.SprintAndRoll.performed += i => sprintAndRollInput = true;
-            inputActions.PlayerActions.SprintAndRoll.canceled += i => sprintAndRollInput = false;
             if (sprintAndRollInput)
             {
                 rollInputTimer += Time.deltaTime;
-                if(moveAmount > 0.5f)
+                if (moveAmount > 0.5f)
                     playerManager.isSprinting = true;
                 else
                 {
@@ -100,31 +107,40 @@ namespace PlayerControl
                     playerManager.isSprinting = false;
                     playerManager.isRolling = true;
                 }
-                
+
                 rollInputTimer = 0;
             }
-            if(rollInputTimer == 0 && playerManager.isSprinting)
+            if (rollInputTimer == 0 && playerManager.isSprinting)
             {
                 playerManager.isSprinting = false;
             }
         }
-        private void HandleJumpingInput()
-        {
-            inputActions.PlayerActions.Jump.performed += _ => jumpInput = true;
-            inputActions.PlayerActions.Jump.canceled += _ => jumpInput = false;
-        }
+
         private void HandleAttackInput()
         {
-            inputActions.PlayerActions.LightAttack.performed += _ => lightAttackInput = true;
-            inputActions.PlayerActions.LightAttack.canceled += _ => lightAttackInput = false;
-            inputActions.PlayerActions.HeavyAttack.performed += _ => heavyAttackInput = true;
-            inputActions.PlayerActions.HeavyAttack.canceled += _ => heavyAttackInput = false;
             if (lightAttackInput)
             {
-                playerAttacker.HandleLightAttack(playerInventory.RightWeapon);
+                if (playerManager.canDoCombo)
+                {
+                    comboFlag = true;
+                    playerAttacker.HandleWeaponCombo(playerInventory.RightWeapon);
+                    comboFlag = false;
+                }
+                else
+                {
+                    if (playerManager.isInteracting)
+                        return;
+                    if (playerManager.canDoCombo)
+                        return;
+                    playerAttacker.HandleLightAttack(playerInventory.RightWeapon);
+                }
             }
             if (heavyAttackInput)
             {
+                if (playerManager.canDoCombo)
+                {
+                    playerAttacker.HandleWeaponCombo(playerInventory.RightWeapon);
+                }
                 playerAttacker.HandleHeavyAttack(playerInventory.RightWeapon);
             }
         }

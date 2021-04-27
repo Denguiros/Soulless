@@ -10,7 +10,8 @@ namespace PlayerControl
         Horizontal,
         IsInteracting,
         IsJumping,
-        IsGrounded
+        IsGrounded,
+        CanDoCombo
     }
     public enum PlayerActionAnimations
     {
@@ -27,7 +28,18 @@ namespace PlayerControl
     public enum PlayerOneHandedAttackAnimations
     {
         OneHandedLightAttack1,
+        OneHandedLightAttack2,
+        OneHandedLightAttack3,
+        OneHandedLightAttack4,
+        OneHandedLightAttack5,
         OneHandedHeavyAttack1,
+        OneHandedHeavyAttack2,
+        OneHandedHeavyAttack3,
+    }
+    public enum EnemyActionAnimations
+    {
+        TakeDamage,
+        Death
     }
     public class AnimatorManager : MonoBehaviour
     {
@@ -127,6 +139,15 @@ namespace PlayerControl
             Vector3 deltaPosition = animator.deltaPosition;
             Vector3 velocity = deltaPosition / delta;
             playerLocomotion.playerRigidbody.velocity = velocity;
+        }
+        public void EnableCombo()
+        {
+            animator.SetBool(PlayerAnimatorParameters.CanDoCombo.ToString(), true);
+        }
+        public void DisableCombo()
+        {
+            animator.SetBool(PlayerAnimatorParameters.CanDoCombo.ToString(), false);
+
         }
     }
 }

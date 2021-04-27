@@ -10,7 +10,7 @@ namespace Enemy
         private int damage=25;
         private void OnTriggerEnter(Collider other)
         {
-            if(other.tag == "Player")
+            if(other.tag == Tags.Player.ToString())
             {
                PlayerStats playerStats = other.GetComponent<PlayerStats>();
 

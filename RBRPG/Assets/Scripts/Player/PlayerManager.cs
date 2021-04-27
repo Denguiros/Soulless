@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace PlayerControl
 {
+    public enum Tags
+    {
+        Hittable,
+        Player,
+        Enemy
+    }
     public class PlayerManager : MonoBehaviour
     {
         private AnimatorManager animatorManager;
@@ -24,7 +30,7 @@ namespace PlayerControl
         [field: SerializeField]
         public bool isDead { get; set; }
         [field: SerializeField]
-        public bool canMoveForward { get; set; }
+        public bool canDoCombo { get; set; }
 
         private InputManager inputManager;
         private Animator animator;
@@ -53,6 +59,7 @@ namespace PlayerControl
         {
             cameraManager.HandleAllCameraMovement();
             isInteracting = animator.GetBool(PlayerAnimatorParameters.IsInteracting.ToString());
+            canDoCombo = animator.GetBool(PlayerAnimatorParameters.CanDoCombo.ToString());
             isJumping = animator.GetBool(PlayerAnimatorParameters.IsJumping.ToString());
             animator.SetBool(PlayerAnimatorParameters.IsGrounded.ToString(), isGrounded);
         }

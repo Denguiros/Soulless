@@ -7,24 +7,56 @@ namespace PlayerControl
 {
     public class PlayerAttacker : MonoBehaviour
     {
-        private AnimatorManager animator;
-        private PlayerManager playerManager;
+        private AnimatorManager animatorManager;
+        private InputManager inputManager;
+        private PlayerOneHandedAttackAnimations lastAttack { get; set; }
         private void Awake()
         {
-            animator = GetComponentInChildren<AnimatorManager>();
-            playerManager = GetComponent<PlayerManager>();
+            inputManager = GetComponent<InputManager>();
+            animatorManager = GetComponentInChildren<AnimatorManager>();
+        }
+        public void HandleWeaponCombo(WeaponItem weapon)
+        {
+            if (inputManager.comboFlag)
+            {
+                animatorManager.animator.SetBool(PlayerAnimatorParameters.CanDoCombo.ToString(), false);
+                if (lastAttack == weapon.lightAttack1)
+                {
+                    animatorManager.PlayTargetAnimation(weapon.lightAttack2.ToString(), true, true);
+                    lastAttack = weapon.lightAttack2;
+                }
+                else if (lastAttack == weapon.lightAttack2)
+                {
+                    animatorManager.PlayTargetAnimation(weapon.lightAttack3.ToString(), true, true);
+                    lastAttack = weapon.lightAttack3;
+                }
+                else if (lastAttack == weapon.lightAttack3)
+                {
+                    animatorManager.PlayTargetAnimation(weapon.lightAttack4.ToString(), true, true);
+                    lastAttack = weapon.lightAttack4;
+                }
+                else if (lastAttack == weapon.lightAttack4)
+                {
+                    animatorManager.PlayTargetAnimation(weapon.lightAttack5.ToString(), true, true);
+                    lastAttack = weapon.lightAttack5;
+                }
+                else if (lastAttack == weapon.lightAttack5)
+                {
+                    animatorManager.PlayTargetAnimation(weapon.lightAttack1.ToString(), true, true);
+                    lastAttack = weapon.lightAttack1;
+                }
+
+            }
         }
         public void HandleLightAttack(WeaponItem weaponItem)
         {
-            if (playerManager.isInteracting)
-                return;
-            animator.PlayTargetAnimation(weaponItem.LightAttack1.ToString(), true,true);
-        }       
+            animatorManager.PlayTargetAnimation(weaponItem.lightAttack1.ToString(), true, true);
+            lastAttack = weaponItem.lightAttack1;
+        }
         public void HandleHeavyAttack(WeaponItem weaponItem)
         {
-            if (playerManager.isInteracting)
-                return;
-            animator.PlayTargetAnimation(weaponItem.HeavyAttack1.ToString(), true, true);
+            animatorManager.PlayTargetAnimation(weaponItem.heavyAttack1.ToString(), true, true);
+            lastAttack = weaponItem.heavyAttack1;
         }
     }
 }

@@ -7,21 +7,20 @@ namespace Item
     [CreateAssetMenu(menuName ="Items/Weapon Item")]
     public class WeaponItem : Item
     {
-        [SerializeField]
-        private GameObject modelPrefab;
-        [SerializeField]
-        private bool isUnarmed;
+        [field: SerializeField] public GameObject modelPrefab { get; set; }
 
-        [Tooltip("For each weapon, choose which animation you want to play.")]
-        [Header("One Handed Attack Animations")]
-        [SerializeField]
-        private PlayerOneHandedAttackAnimations lightAttack1;
-        [SerializeField]
-        private PlayerOneHandedAttackAnimations heavyAttack1;
+        [SerializeField]  bool isUnarmed;
 
-        public GameObject ModelPrefab => modelPrefab;
+        [field: SerializeField] public PlayerOneHandedAttackAnimations lightAttack1 { get; set; }
+        [field: SerializeField] public PlayerOneHandedAttackAnimations lightAttack2 { get; set; }
+        [field: SerializeField] public PlayerOneHandedAttackAnimations lightAttack3 { get; set; }
+        [field: SerializeField] public PlayerOneHandedAttackAnimations lightAttack4 { get; set; }
+        [field: SerializeField] public PlayerOneHandedAttackAnimations lightAttack5 { get; set; }
+        [field: SerializeField] public PlayerOneHandedAttackAnimations heavyAttack1 { get; set; }
+        [field: SerializeField] public PlayerOneHandedAttackAnimations heavyAttack2 { get; set; }
+        [field: SerializeField] public PlayerOneHandedAttackAnimations heavyAttack3 { get; set; }
 
-        public PlayerOneHandedAttackAnimations LightAttack1 => lightAttack1;
-        public PlayerOneHandedAttackAnimations HeavyAttack1 => heavyAttack1;
+
+
     }
 }

@@ -15,8 +15,7 @@ namespace Item
         private bool isLeftHandSlot;
         [SerializeField]
         private bool isrightHandSlot;
-        [SerializeField]
-        private GameObject currentWeaponModel;
+        public GameObject currentWeaponModel { get; set; }
 
         public bool IsLeftHandSlot => isLeftHandSlot;
         public bool IsrightHandSlot => isrightHandSlot;
@@ -43,7 +42,7 @@ namespace Item
                 UnloadWeapon();
                 return;
             }
-            GameObject model = Instantiate(weaponItem.ModelPrefab);
+            GameObject model = Instantiate(weaponItem.modelPrefab);
             if (model != null)
             {
                 if (parentOverride != null)
