@@ -69679,8 +69679,8 @@ MonoBehaviour:
   zoomSpeed: 50
   maxDistance: -2
   minDistance: -6
-  cameraPivotSpeed: 5
-  cameraLookSpeed: 10
+  cameraPivotSpeed: 2
+  cameraLookSpeed: 3
   cameraFollowSpeed: 0.1
   lookAngle: 0
   pivotAngle: 0

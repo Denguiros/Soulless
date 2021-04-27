@@ -23,7 +23,8 @@ namespace PlayerControl
         public bool isJumping { get; set; }
         [field: SerializeField]
         public bool isDead { get; set; }
-
+        [field: SerializeField]
+        public bool canMoveForward { get; set; }
 
         private InputManager inputManager;
         private Animator animator;
@@ -41,25 +42,19 @@ namespace PlayerControl
         }
         void Update()
         {
-            if (!isDead)
-                inputManager.HandleAllInput();
-
+            inputManager.HandleAllInput();
         }
         private void FixedUpdate()
         {
-            if (!isDead)
-                playerLocomotion.HandleAllMovement();
+           playerLocomotion.HandleAllMovement();
         }
 
         void LateUpdate()
         {
             cameraManager.HandleAllCameraMovement();
-            if (!isDead)
-            {
-                isInteracting = animator.GetBool(PlayerAnimatorParameters.IsInteracting.ToString());
-                isJumping = animator.GetBool(PlayerAnimatorParameters.IsJumping.ToString());
-                animator.SetBool(PlayerAnimatorParameters.IsGrounded.ToString(), isGrounded);
-            }
+            isInteracting = animator.GetBool(PlayerAnimatorParameters.IsInteracting.ToString());
+            isJumping = animator.GetBool(PlayerAnimatorParameters.IsJumping.ToString());
+            animator.SetBool(PlayerAnimatorParameters.IsGrounded.ToString(), isGrounded);
         }
     }
 }

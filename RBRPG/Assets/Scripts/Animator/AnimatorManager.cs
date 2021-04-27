@@ -125,7 +125,6 @@ namespace PlayerControl
             float delta = Time.deltaTime;
             playerLocomotion.playerRigidbody.drag = 0;
             Vector3 deltaPosition = animator.deltaPosition;
-            deltaPosition.y = 0;
             Vector3 velocity = deltaPosition / delta;
             playerLocomotion.playerRigidbody.velocity = velocity;
         }
