@@ -23,9 +23,29 @@ namespace PlayerControl
         [SerializeField]
         public float sphereRadius = 0.5f;
         [SerializeField]
+        private float groundDetectionRayStartPoint = 0.5f;
+        [SerializeField]
         private float minimumDistanceNeededToBeginFall = 1f;
         [SerializeField]
         private float groundDirectionRayDistance = 0.2f;
+
+
+
+        [Header("Handling Steps & Slopes")]
+        [SerializeField]
+        private Transform stepRayUpper;
+        [SerializeField]
+        private Transform stepRayLower;
+        [SerializeField]
+        private float stepHeight = 0.3f;
+        [SerializeField]
+        private float stepSmooth = 0.1f;
+        [SerializeField]
+        private float downStairsSmooth = 0.01f;
+        [SerializeField]
+        private float lowerStepRayRange = 0.1f;
+        [SerializeField]
+        private float upperStepRayRange = 0.15f;
 
 
         [Header("Falling")]
@@ -37,6 +57,7 @@ namespace PlayerControl
         private float leapingVelocity = 2f;
         [SerializeField]
         private LayerMask groundLayer;
+
 
         [Header("Movement Stats")]
         [SerializeField]
@@ -54,6 +75,11 @@ namespace PlayerControl
         private float jumpHeight = 10f;
         [SerializeField]
         private float gravityIntensity = -15f;
+        private int fall = 0;
+        private Vector3 lastPosition;
+        private Vector3 targetPosition;
+        private Vector3 normalVector;
+        private float currentSpeed;
 
         private void Awake()
         {
@@ -62,13 +88,16 @@ namespace PlayerControl
             playerManager = GetComponent<PlayerManager>();
             cameraObject = Camera.main.transform;
             animatorManager = GetComponentInChildren<AnimatorManager>();
+            stepRayUpper.position = new Vector3(stepRayUpper.position.x, stepHeight, stepRayUpper.position.z);
         }
         public void HandleAllMovement()
         {
+
             HandleFallingAndLanding();
+
             if (playerManager.isInteracting)
                 return;
-            if (playerManager.isInAir)
+            if (!playerManager.isGrounded)
                 return;
             if (playerManager.isJumping)
                 return;
@@ -96,23 +125,23 @@ namespace PlayerControl
             moveDirection.Normalize();
             moveDirection.y = 0;
 
-            float speed = runningSpeed;
+            currentSpeed = runningSpeed;
             if (playerManager.isSprinting && inputManager.moveAmount >= 0.5f)
             {
-                speed = sprintingSpeed;
+                currentSpeed = sprintingSpeed;
             }
             else
             {
                 if (inputManager.moveAmount >= 0.5f)
                 {
-                    speed = runningSpeed;
+                    currentSpeed = runningSpeed;
                 }
                 else
                 {
-                    speed = walkingSpeed;
+                    currentSpeed = walkingSpeed;
                 }
             }
-            moveDirection *= speed;
+            moveDirection *= currentSpeed;
 
 
             Vector3 movementVelocity = moveDirection;
@@ -121,38 +150,72 @@ namespace PlayerControl
 
         private void HandleFallingAndLanding()
         {
+            RaycastHit hit;
             Vector3 rayCastOrigin = transform.position;
-            rayCastOrigin.y += rayCastHeightOffset;
-            if (!playerManager.isGrounded && !playerManager.isJumping)
+            rayCastOrigin.y += groundDetectionRayStartPoint;
+            playerManager.isGrounded = false;
+            if (Physics.Raycast(rayCastOrigin, transform.forward, out hit, stepRayUpper.position.y))
             {
-                if (!playerManager.isInteracting)
-                {
-                    animatorManager.PlayTargetAnimation(PlayerActionAnimations.Fall.ToString(), true, false);
-                }
+                moveDirection = Vector3.zero;
+            }
+            if (playerManager.isInAir && !playerManager.isJumping)
+            {
                 inAirTimer += Time.deltaTime;
                 playerRigidbody.AddForce(transform.forward * leapingVelocity);
                 playerRigidbody.AddForce(-Vector3.up * fallingSpeed * inAirTimer);
             }
-
-            if (Physics.CheckSphere(rayCastOrigin, sphereRadius, groundLayer))
+            Vector3 dir = moveDirection;
+            dir.Normalize();
+            rayCastOrigin += dir*groundDirectionRayDistance;
+            targetPosition = transform.position;
+            Debug.DrawRay(rayCastOrigin, -Vector3.up * minimumDistanceNeededToBeginFall, Color.red, 0.1f, false);
+            if (Physics.Raycast(rayCastOrigin, -Vector3.up, out hit, minimumDistanceNeededToBeginFall, groundLayer))
             {
-                if (!playerManager.isGrounded)
-                {
-                    animatorManager.PlayTargetAnimation(PlayerActionAnimations.Land.ToString(), true, true);
-                }
-                inAirTimer = 0;
+                normalVector = hit.normal;
+                Vector3 tp = hit.point;
+                targetPosition.y = tp.y;
                 playerManager.isGrounded = true;
-                playerManager.isInAir = false;
+                if (playerManager.isInAir)
+                {
+                    if (inAirTimer > 0.5f)
+                    {
+                        animatorManager.PlayTargetAnimation(PlayerActionAnimations.Land.ToString(), true, true);
+                    }
+                    else
+                    {
+                        animatorManager.PlayTargetAnimation(PlayerActionAnimations.Empty.ToString(), false, false);
+                    }
+                    inAirTimer = 0;
+                    playerManager.isInAir = false;
+                }
             }
             else
             {
-                playerManager.isGrounded = false;
-                playerManager.isInAir = true;
+                if (playerManager.isGrounded)
+                {
+                    playerManager.isGrounded = false;
+                }
+                if (!playerManager.isInAir)
+                {
+                    if (!playerManager.isInteracting && inAirTimer > 0.2f)
+                    {
+                        animatorManager.PlayTargetAnimation(PlayerActionAnimations.Fall.ToString(), true, false);
+                    }
+                    playerManager.isInAir = true;
+                }
             }
-        }
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawSphere(transform.position + new Vector3(0, rayCastHeightOffset, 0), sphereRadius);
+            if (playerManager.isGrounded && !playerManager.isJumping)
+            {
+                if (playerManager.isInteracting || inputManager.moveAmount > 0)
+                {
+                    transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime/0.1f);
+                }
+                else
+                {
+                    transform.position = targetPosition;
+                }
+            }
+
         }
         public void HandleJumping()
         {
@@ -166,7 +229,7 @@ namespace PlayerControl
                 Vector3 playerVelocity = moveDirection;
                 playerVelocity.y = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight);
                 playerRigidbody.velocity = playerVelocity;
-                
+
             }
         }
         public void HandleRolling()
@@ -191,6 +254,7 @@ namespace PlayerControl
                 playerManager.isRolling = false;
             }
         }
+
 
     }
 

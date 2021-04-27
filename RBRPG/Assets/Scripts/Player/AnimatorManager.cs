@@ -19,7 +19,10 @@ namespace PlayerControl
         Land,
         Locomotion,
         Fall,
-        Jump
+        Jump,
+        TakeDamage,
+        Death,
+        Empty
     }
     public enum PlayerOneHandedAttackAnimations
     {

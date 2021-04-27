@@ -17,6 +17,12 @@ namespace PlayerControl
         private PlayerInventory playerInventory;
         private Vector2 movementInput;
 
+        private Vector2 cameraInput;
+
+        public Vector2 cameraZoomInput { get; set; }
+        public float cameraInputX { get; set; }
+        public float cameraInputY { get; set; }
+
         [field: SerializeField]
         public bool lightAttackInput { get; set; }
         [field: SerializeField]
@@ -46,6 +52,8 @@ namespace PlayerControl
             {
                 inputActions = new PlayerControls();
                 inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
+                inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+                inputActions.PlayerMovement.CameraZoom.performed += i => cameraZoomInput = i.ReadValue<Vector2>();
             }
             inputActions.Enable();
         }
@@ -64,6 +72,10 @@ namespace PlayerControl
         {
             horizontalInput = movementInput.x;
             verticalInput = movementInput.y;
+
+            cameraInputX = cameraInput.x;
+            cameraInputY = cameraInput.y;
+
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
             animatorManager.UpdateAnimatorValues(0, moveAmount, playerManager.isSprinting);
         }
@@ -74,7 +86,12 @@ namespace PlayerControl
             if (sprintAndRollInput)
             {
                 rollInputTimer += Time.deltaTime;
-                playerManager.isSprinting = true;
+                if(moveAmount > 0.5f)
+                    playerManager.isSprinting = true;
+                else
+                {
+                    playerManager.isSprinting = false;
+                }
             }
             else
             {
