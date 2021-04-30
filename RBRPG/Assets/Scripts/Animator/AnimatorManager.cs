@@ -23,7 +23,15 @@ namespace PlayerControl
         Jump,
         TakeDamage,
         Death,
-        Empty
+        Empty,
+        PickUpItem
+    }
+    public enum PlayerLocomotionAnimations
+    {
+        RightArmEmpty,
+        LeftArmEmpty,
+        RightArmIdle1,
+        LeftArmIdle1
     }
     public enum PlayerOneHandedAttackAnimations
     {

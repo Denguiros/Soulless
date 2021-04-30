@@ -6,10 +6,9 @@ namespace Item
 {
     public class Item : ScriptableObject
     {
-        [Header("Item Information")]
-        [SerializeField]
-        private Sprite itemIcon;
-        [SerializeField]
-        private string itemName;
+        [field: SerializeField]
+        public Sprite icon { get; set; }
+        [field: SerializeField]
+        public new string name { get; set; }
     }
 }

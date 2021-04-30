@@ -9,11 +9,13 @@ namespace PlayerControl
     {
         private AnimatorManager animatorManager;
         private InputManager inputManager;
+        private WeaponSlotManager weaponSlotManager;
         private PlayerOneHandedAttackAnimations lastAttack { get; set; }
         private void Awake()
         {
             inputManager = GetComponent<InputManager>();
             animatorManager = GetComponentInChildren<AnimatorManager>();
+            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
         }
         public void HandleWeaponCombo(WeaponItem weapon)
         {
@@ -26,7 +28,7 @@ namespace PlayerControl
                     lastAttack = weapon.lightAttack2;
                 }
                 else if (lastAttack == weapon.lightAttack2)
-                {
+                { 
                     animatorManager.PlayTargetAnimation(weapon.lightAttack3.ToString(), true, true);
                     lastAttack = weapon.lightAttack3;
                 }
@@ -50,11 +52,13 @@ namespace PlayerControl
         }
         public void HandleLightAttack(WeaponItem weaponItem)
         {
+            weaponSlotManager.weapon = weaponItem;
             animatorManager.PlayTargetAnimation(weaponItem.lightAttack1.ToString(), true, true);
             lastAttack = weaponItem.lightAttack1;
         }
         public void HandleHeavyAttack(WeaponItem weaponItem)
         {
+            weaponSlotManager.weapon = weaponItem;
             animatorManager.PlayTargetAnimation(weaponItem.heavyAttack1.ToString(), true, true);
             lastAttack = weaponItem.heavyAttack1;
         }

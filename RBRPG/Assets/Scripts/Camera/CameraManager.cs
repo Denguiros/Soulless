@@ -43,7 +43,6 @@ public class CameraManager : MonoBehaviour
         inputManager = FindObjectOfType<InputManager>();
         cameraTransform = Camera.main.transform;
         defaultPosition = cameraTransform.localPosition.z;
-        Cursor.lockState = CursorLockMode.Locked;
 
     }
     public void HandleAllCameraMovement()

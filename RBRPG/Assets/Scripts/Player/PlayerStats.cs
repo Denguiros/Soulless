@@ -8,28 +8,44 @@ namespace PlayerControl
 {
     public class PlayerStats : MonoBehaviour
     {
-        [SerializeField]
-        private int healthLevel = 10;
-        [SerializeField]
-        private int maxHealth = 10;
-        [SerializeField]
-        private int currentHealth = 10;
-        [SerializeField]
-        private HealthBar healthBar;
+
+        [field: SerializeField] public int healthLevel { get; set; } = 10;
+
+        [field: SerializeField] public int maxHealth { get; set; } = 10;
+
+        [field: SerializeField] public int currentHealth { get; set; } = 10;      
+        [field: SerializeField] public int staminaLevel { get; set; } = 10;
+
+        [field: SerializeField] public int maxStamina {get; set; } = 10;
+
+        [field:SerializeField] public int currentStamina { get; set; } = 10;
+
+        [field: SerializeField] private HealthBar healthBar { get; set; }
+        [field: SerializeField] private StaminaBar staminaBar { get; set; }
         private AnimatorManager animatorManager;
         private PlayerManager playerManager;
         private void Start()
         {
+            animatorManager = GetComponentInChildren<AnimatorManager>();
+            playerManager = GetComponent<PlayerManager>();
+
             maxHealth = SetMaxHealthFromHealthLevel();
             currentHealth = maxHealth;
-            playerManager = GetComponent<PlayerManager>();
             healthBar.SetMaxHealth(maxHealth);
-            animatorManager = GetComponentInChildren<AnimatorManager>();
+
+            maxStamina = SetMaxStaminaFromStaminaLevel();
+            currentStamina = maxStamina;
+            staminaBar.SetMaxStamina(maxStamina);
         }
         private int SetMaxHealthFromHealthLevel()
         {
             maxHealth = healthLevel * 10;
             return maxHealth;
+        }    
+        private int SetMaxStaminaFromStaminaLevel()
+        {
+            maxStamina = staminaLevel * 10;
+            return maxStamina;
         }
         public void TakeDamage(int damage)
         {
@@ -43,6 +59,12 @@ namespace PlayerControl
                 animatorManager.PlayTargetAnimation(PlayerActionAnimations.Death.ToString(), true, true);
                 playerManager.isDead = true;
             }
+        }
+        public void TakeStaminaDamage(int damage)
+        {
+            currentStamina -= damage;
+            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+            staminaBar.SetCurrentStamina(currentStamina);
         }
     }
 }

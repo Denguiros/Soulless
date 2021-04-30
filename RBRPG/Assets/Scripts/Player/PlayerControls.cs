@@ -169,6 +169,54 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Arrow Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""8abd24af-0b0e-4935-8968-ce2d7f397fae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Arrow Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""a0c26edd-2d9b-41f1-9958-5aeaea4f0207"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Arrow Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecc61884-781f-4105-b47b-91918bde5581"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Arrow Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""6989b451-7f59-459f-98e6-d57c0b796af4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""b5ca2a4e-3214-45fb-bb8f-d75577b787d9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""71251737-ce83-4ccc-96b4-06bcad70c31d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -226,6 +274,72 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Heavy Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ae26284-efec-4c13-9235-d70cce6cc122"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Arrow Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc7c663e-7d38-4fc4-a6aa-bab1fa4ac274"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Arrow Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df621a81-76f1-434e-8e31-8e0fe19addb5"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Arrow Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d3f845c-ea9e-4c18-81c3-80b37c925fdd"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Arrow Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7da6944-f97a-44d7-bd99-ef67951fd6f7"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""750f2a32-4822-41a6-a045-0791630fc5c1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -243,6 +357,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_LightAttack = m_PlayerActions.FindAction("Light Attack", throwIfNotFound: true);
         m_PlayerActions_HeavyAttack = m_PlayerActions.FindAction("Heavy Attack", throwIfNotFound: true);
+        m_PlayerActions_ArrowUp = m_PlayerActions.FindAction("Arrow Up", throwIfNotFound: true);
+        m_PlayerActions_ArrowDown = m_PlayerActions.FindAction("Arrow Down", throwIfNotFound: true);
+        m_PlayerActions_ArrowLeft = m_PlayerActions.FindAction("Arrow Left", throwIfNotFound: true);
+        m_PlayerActions_ArrowRight = m_PlayerActions.FindAction("Arrow Right", throwIfNotFound: true);
+        m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerActions_Inventory = m_PlayerActions.FindAction("Inventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -345,6 +465,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_LightAttack;
     private readonly InputAction m_PlayerActions_HeavyAttack;
+    private readonly InputAction m_PlayerActions_ArrowUp;
+    private readonly InputAction m_PlayerActions_ArrowDown;
+    private readonly InputAction m_PlayerActions_ArrowLeft;
+    private readonly InputAction m_PlayerActions_ArrowRight;
+    private readonly InputAction m_PlayerActions_Interact;
+    private readonly InputAction m_PlayerActions_Inventory;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -353,6 +479,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @LightAttack => m_Wrapper.m_PlayerActions_LightAttack;
         public InputAction @HeavyAttack => m_Wrapper.m_PlayerActions_HeavyAttack;
+        public InputAction @ArrowUp => m_Wrapper.m_PlayerActions_ArrowUp;
+        public InputAction @ArrowDown => m_Wrapper.m_PlayerActions_ArrowDown;
+        public InputAction @ArrowLeft => m_Wrapper.m_PlayerActions_ArrowLeft;
+        public InputAction @ArrowRight => m_Wrapper.m_PlayerActions_ArrowRight;
+        public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
+        public InputAction @Inventory => m_Wrapper.m_PlayerActions_Inventory;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -374,6 +506,24 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @HeavyAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHeavyAttack;
                 @HeavyAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHeavyAttack;
                 @HeavyAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHeavyAttack;
+                @ArrowUp.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowUp;
+                @ArrowUp.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowUp;
+                @ArrowUp.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowUp;
+                @ArrowDown.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowDown;
+                @ArrowDown.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowDown;
+                @ArrowDown.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowDown;
+                @ArrowLeft.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowLeft;
+                @ArrowLeft.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowLeft;
+                @ArrowLeft.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowLeft;
+                @ArrowRight.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowRight;
+                @ArrowRight.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowRight;
+                @ArrowRight.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnArrowRight;
+                @Interact.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
+                @Inventory.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInventory;
+                @Inventory.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInventory;
+                @Inventory.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInventory;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -390,6 +540,24 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @HeavyAttack.started += instance.OnHeavyAttack;
                 @HeavyAttack.performed += instance.OnHeavyAttack;
                 @HeavyAttack.canceled += instance.OnHeavyAttack;
+                @ArrowUp.started += instance.OnArrowUp;
+                @ArrowUp.performed += instance.OnArrowUp;
+                @ArrowUp.canceled += instance.OnArrowUp;
+                @ArrowDown.started += instance.OnArrowDown;
+                @ArrowDown.performed += instance.OnArrowDown;
+                @ArrowDown.canceled += instance.OnArrowDown;
+                @ArrowLeft.started += instance.OnArrowLeft;
+                @ArrowLeft.performed += instance.OnArrowLeft;
+                @ArrowLeft.canceled += instance.OnArrowLeft;
+                @ArrowRight.started += instance.OnArrowRight;
+                @ArrowRight.performed += instance.OnArrowRight;
+                @ArrowRight.canceled += instance.OnArrowRight;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @Inventory.started += instance.OnInventory;
+                @Inventory.performed += instance.OnInventory;
+                @Inventory.canceled += instance.OnInventory;
             }
         }
     }
@@ -406,5 +574,11 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLightAttack(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);
+        void OnArrowUp(InputAction.CallbackContext context);
+        void OnArrowDown(InputAction.CallbackContext context);
+        void OnArrowLeft(InputAction.CallbackContext context);
+        void OnArrowRight(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
     }
 }

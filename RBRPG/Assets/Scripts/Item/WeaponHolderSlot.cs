@@ -11,14 +11,13 @@ namespace Item
 
         [SerializeField]
         private Transform parentOverride;
-        [SerializeField]
-        private bool isLeftHandSlot;
-        [SerializeField]
-        private bool isrightHandSlot;
+        [field: SerializeField]
         public GameObject currentWeaponModel { get; set; }
 
-        public bool IsLeftHandSlot => isLeftHandSlot;
-        public bool IsrightHandSlot => isrightHandSlot;
+        [field:SerializeField]
+        public bool isLeftHandSlot { get; set; }
+        [field: SerializeField]
+        public bool isRightHandSlot { get; set; } = true;
         public void UnloadWeapon()
         {
             if (currentWeaponModel != null)
@@ -42,7 +41,7 @@ namespace Item
                 UnloadWeapon();
                 return;
             }
-            GameObject model = Instantiate(weaponItem.modelPrefab);
+            GameObject model = Instantiate(weaponItem.modelPrefab) as GameObject;
             if (model != null)
             {
                 if (parentOverride != null)

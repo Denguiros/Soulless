@@ -9,6 +9,10 @@ namespace UI
     {
         [field:SerializeField]
         public Slider slider { get; set; }
+        private void Awake()
+        {
+            slider = GetComponent<Slider>();
+        }
         public void SetMaxHealth(int maxHealth)
         {
             slider.maxValue = maxHealth;

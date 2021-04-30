@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3d5d7fa894aea46af82c999c394982, type: 3}
+  m_Name: Axe
+  m_EditorClassIdentifier: 
+  <icon>k__BackingField: {fileID: 21300000, guid: 6ebee8d1299db704a976f1bc434a5a09, type: 3}
+  <name>k__BackingField: 
+  <modelPrefab>k__BackingField: {fileID: 6335536578955840728, guid: 4b0d3e2b6f900af4d973b8b9e8b04009, type: 3}
+  <isUnarmed>k__BackingField: 0
+  <rightHandIdle>k__BackingField: 0
+  <leftHandIdle>k__BackingField: 0
+  <lightAttack1>k__BackingField: 0
+  <lightAttack2>k__BackingField: 1
+  <lightAttack3>k__BackingField: 2
+  <lightAttack4>k__BackingField: 3
+  <lightAttack5>k__BackingField: 4
+  <heavyAttack1>k__BackingField: 5
+  <heavyAttack2>k__BackingField: 6
+  <heavyAttack3>k__BackingField: 7
+  <baseStamina>k__BackingField: 20
+  <lightAttackMultiplier>k__BackingField: 1
+  <heavyAttackMultiplier>k__BackingField: 2
