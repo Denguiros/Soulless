@@ -7,6 +7,7 @@ using System;
 public class CameraManager : MonoBehaviour
 {
     private InputManager inputManager;
+    private PlayerManager playerManager;
 
     [Header("Camera Optios")]
     [SerializeField] private Transform targetTransform;
@@ -37,10 +38,12 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float minimumPivotAngle = -35;
     [SerializeField] private float maximumPivotAngle = 35;
 
+
     private void Awake()
     {
         targetTransform = FindObjectOfType<PlayerManager>().transform;
         inputManager = FindObjectOfType<InputManager>();
+        playerManager = FindObjectOfType <PlayerManager>();
         cameraTransform = Camera.main.transform;
         defaultPosition = cameraTransform.localPosition.z;
 
@@ -48,7 +51,8 @@ public class CameraManager : MonoBehaviour
     public void HandleAllCameraMovement()
     {
         FollowTarget();
-        RotateCamera();
+        if(!playerManager.isConsultingUi)
+            RotateCamera();
         HandleCameraCollisionsAndZooming();
     }
 

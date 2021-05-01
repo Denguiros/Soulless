@@ -30,6 +30,7 @@ namespace PlayerControl
         [field: SerializeField] public bool isSprinting { get; set; }
         [field: SerializeField] public bool isRolling { get; set; }
         [field: SerializeField] public bool isJumping { get; set; }
+        [field: SerializeField] public bool isConsultingUi { get; set; }
         [field: SerializeField] public bool isDead { get; set; }
         [field: SerializeField] public bool canDoCombo { get; set; }
         [field: SerializeField] public LayerMask interactableMask { get; set; }

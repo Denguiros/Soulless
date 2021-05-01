@@ -147,40 +147,44 @@ namespace PlayerControl
         }
         private void HandleAttackInput()
         {
-            if (heavyAttackInput)
+            if (!playerManager.isConsultingUi)
             {
 
-                if (playerManager.canDoCombo)
+                if (heavyAttackInput)
                 {
-                    comboFlag = true;
-                    playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
-                    comboFlag = false;
-                }
-                else
-                {
-                    if (playerManager.isInteracting)
-                        return;
-                    if (playerManager.canDoCombo)
-                        return;
-                    playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
-                }
-            }
-            if(lightAttackInput)
-            {
 
-                if (playerManager.canDoCombo)
-                {
-                    comboFlag = true;
-                    playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
-                    comboFlag = false;
-                }
-                else
-                {
-                    if (playerManager.isInteracting)
-                        return;
                     if (playerManager.canDoCombo)
-                        return;
-                    playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                    {
+                        comboFlag = true;
+                        playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                        comboFlag = false;
+                    }
+                    else
+                    {
+                        if (playerManager.isInteracting)
+                            return;
+                        if (playerManager.canDoCombo)
+                            return;
+                        playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+                    }
+                }
+                if (lightAttackInput)
+                {
+
+                    if (playerManager.canDoCombo)
+                    {
+                        comboFlag = true;
+                        playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                        comboFlag = false;
+                    }
+                    else
+                    {
+                        if (playerManager.isInteracting)
+                            return;
+                        if (playerManager.canDoCombo)
+                            return;
+                        playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                    }
                 }
             }
         }

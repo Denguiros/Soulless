@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1437925371701160084
+--- !u!1 &4322801768547462532
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,56 +8,57 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1437925371701160087}
+  - component: {fileID: 4322801768547462535}
   m_Layer: 0
-  m_Name: Claymore Pivot
+  m_Name: Spear Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1437925371701160087
+--- !u!4 &4322801768547462535
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437925371701160084}
-  m_LocalRotation: {x: -0.60485196, y: -0.56682235, z: 0.48079246, w: 0.28584108}
-  m_LocalPosition: {x: 8.4, y: 4.5, z: 2}
+  m_GameObject: {fileID: 4322801768547462532}
+  m_LocalRotation: {x: -0.7865099, y: -0.15261216, z: 0.103944734, w: 0.5893279}
+  m_LocalPosition: {x: 11.9, y: 0.6, z: -22.9}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
-  - {fileID: 1437925371951150400}
-  m_Father: {fileID: 1437925372059518399}
+  - {fileID: 4322801769462962573}
+  m_Father: {fileID: 4322801769902709841}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 11.494, y: -112.453, z: 101.419}
---- !u!65 &1437925371951289172
-BoxCollider:
+  m_LocalEulerAnglesHint: {x: -116.453, y: 50.429, z: -54.481018}
+--- !u!136 &4322801769462770874
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437925371951417464}
+  m_GameObject: {fileID: 4322801769462868821}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.08839798, y: 1.1860638, z: 0.31257772}
-  m_Center: {x: 0, y: 0.9039967, z: -0.0000005066395}
---- !u!114 &1437925371951289173
+  m_Radius: 0.12443447
+  m_Height: 0.7115388
+  m_Direction: 1
+  m_Center: {x: -0.0000009536743, y: 1.4813044, z: 0}
+--- !u!114 &4322801769462770877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437925371951417464}
+  m_GameObject: {fileID: 4322801769462868821}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2eeaa93eace0c4ba262030dab69b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeaponDamage: 25
---- !u!1 &1437925372059518396
+--- !u!1 &4322801769902709870
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,93 +66,93 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1437925372059518399}
+  - component: {fileID: 4322801769902709841}
   m_Layer: 0
-  m_Name: Claymore
+  m_Name: Spear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1437925372059518399
+--- !u!4 &4322801769902709841
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437925372059518396}
+  m_GameObject: {fileID: 4322801769902709870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.1376, y: 0.75375587, z: 21.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1437925371701160087}
+  - {fileID: 4322801768547462535}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1437925371951289168
+--- !u!1001 &4322801769462770873
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1437925371701160087}
+    m_TransformParent: {fileID: 4322801768547462535}
     m_Modifications:
-    - target: {fileID: 138024, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 100332, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_Name
-      value: SM_Wep_Crystal_DoubleSword_01
+      value: SM_Wep_Ornate_Spear_01
       objectReference: {fileID: 0}
-    - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
+    - target: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
---- !u!1 &1437925371951417464 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
+--- !u!1 &4322801769462868821 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 138024, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
-  m_PrefabInstance: {fileID: 1437925371951289168}
+  m_CorrespondingSourceObject: {fileID: 100332, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
+  m_PrefabInstance: {fileID: 4322801769462770873}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1437925371951150400 stripped
+--- !u!4 &4322801769462962573 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
-  m_PrefabInstance: {fileID: 1437925371951289168}
+  m_CorrespondingSourceObject: {fileID: 472372, guid: a0e8e2ba9cb9e5b498192bf4610b8206, type: 3}
+  m_PrefabInstance: {fileID: 4322801769462770873}
   m_PrefabAsset: {fileID: 0}

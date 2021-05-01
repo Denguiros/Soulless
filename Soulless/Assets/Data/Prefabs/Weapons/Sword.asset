@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff3d5d7fa894aea46af82c999c394982, type: 3}
-  m_Name: Spear
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  <icon>k__BackingField: {fileID: 21300000, guid: 980498441035f5b48821f29e1f41d6c0, type: 3}
-  <name>k__BackingField: 
-  <modelPrefab>k__BackingField: {fileID: 4322801769902709870, guid: eb28906ccdcfd3b41ad963abd181975b, type: 3}
+  <icon>k__BackingField: {fileID: 21300000, guid: d0e9f86040cb9564f89fed851e659834, type: 3}
+  <name>k__BackingField: Sword of Oblivion
+  <modelPrefab>k__BackingField: {fileID: 1631607032641582, guid: 0c14f3ea30af4174ba288b3c2042f665, type: 3}
   <isUnarmed>k__BackingField: 0
-  <rightHandIdle>k__BackingField: 0
-  <leftHandIdle>k__BackingField: 0
+  <rightHandIdle>k__BackingField: 2
+  <leftHandIdle>k__BackingField: 3
   <lightAttack1>k__BackingField: 0
   <lightAttack2>k__BackingField: 1
   <lightAttack3>k__BackingField: 2
@@ -26,6 +26,6 @@ MonoBehaviour:
   <heavyAttack1>k__BackingField: 0
   <heavyAttack2>k__BackingField: 1
   <heavyAttack3>k__BackingField: 2
-  <baseStamina>k__BackingField: 10
+  <baseStamina>k__BackingField: 15
   <lightAttackMultiplier>k__BackingField: 1
   <heavyAttackMultiplier>k__BackingField: 2

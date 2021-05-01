@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Item;
-
+using PlayerControl;
 namespace UI
 {
     public class UIManager : MonoBehaviour
     {
+        private PlayerManager playerManager;
         [field:SerializeField] public PlayerInventory playerInventory { get; set; }
         [field:SerializeField] public GameObject selectWindow { get; set; }
         [field:SerializeField] public GameObject hudWindow { get; set; }
@@ -20,6 +21,7 @@ namespace UI
         private void Start()
         {
             weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
+            playerManager = FindObjectOfType<PlayerManager>();
         }
         public void UpdateUI()
         {
@@ -45,10 +47,12 @@ namespace UI
         public void OpenSelectWindow()
         {
             selectWindow.SetActive(true);
+            playerManager.isConsultingUi = true;
         }
         public void CloseSelectWindow()
         {
             selectWindow.SetActive(false);
+            playerManager.isConsultingUi = false;
         }
         public void CloseAllInventoryWindows()
         {
